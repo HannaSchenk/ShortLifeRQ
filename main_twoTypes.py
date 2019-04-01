@@ -42,7 +42,7 @@ import matplotlib.cm as cm
 # -----------------------------------------------------------------------------------------------------------------------------------
 
 start = timeit.default_timer()
-figure1 = False             # figure 1 in Paper
+figure1 = True             # figure 1 in Paper
 plot_fig2 = True            # plot h1 vs p1 trajectory (and h2 vs p2 if 4D method)
 plot_simulation = True      
 save_simulation = False     # save extinction times to file
@@ -80,7 +80,7 @@ methods    = ['gillespie_local_update', 'song_JTB']
 
 # -----------------------------------------------------------------------------------------------------------------------------------
 #### parameters
-delta_t_sde = 0.01 if (method != 'moran' and method != 'local_update') else 0.1  # time step in SDE integration
+# delta_t_sde = 0.01 if (method != 'moran' and method != 'local_update') else 0.1  # time step in SDE integration
 all_birth_H = [0.24, 0.32, 0.4, 0.48, 0.56, 0.64, 0.72, 0.8, 0.88, 0.96, 1.04, 1.12, 1.2, 1.28, 1.36, 1.44, 1.52, 1.6]  # or half of this when mu=0 in non-logistic "Lotka_Volterra"
 all_birth_H = [0.24, 0.32]
 
@@ -119,7 +119,7 @@ for birth_H in all_birth_H:  # LOOP THROUGH all_birth_H. One figure for each
 
     # -----------------------------------------------------------------------------------------------------------------------------------
 
-    print(method, 'h*', h_star, 'p*', p_star)
+    # print(method, 'h*', h_star, 'p*', p_star)
 
     N_H = round(2 * h_star)  # total host population
     N_P = round(2 * p_star)
@@ -309,6 +309,7 @@ for birth_H in all_birth_H:  # LOOP THROUGH all_birth_H. One figure for each
             # figure 1. values in time (trajectories)
 
             if method in methods_2d:  # 2d
+
                 ax.plot(time, x, color = colours_h[0], label = r'$H_1$') 
                 ax.plot(time, [N_H-i for i in x], color = colours_h[1], label = r'$H_2$') 
                 ax.plot(time, y, color = colours_p[0], label = r'$P_1$') 
@@ -326,6 +327,9 @@ for birth_H in all_birth_H:  # LOOP THROUGH all_birth_H. One figure for each
                 if plot_fig2:
                     ax2.scatter(x, y, c=time, cmap=cmvir, marker='.')
             elif method in methods_4d:  # 4d
+                # file_traj = open('trajectory2.txt', 'ab')
+                # np.savetxt(file_traj, [x,x2,y,y2])
+                # file_traj.close()
                 x_total = [xi + xj for xi, xj in zip(x, x2)]
                 y_total = [yi + yj for yi, yj in zip(y, y2)]
                 ax.plot(time, x,  color = colours_h[0], linestyle = '-', label = r'$H_1$') 
