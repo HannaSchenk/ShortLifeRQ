@@ -1,8 +1,8 @@
-#  Simulation code for “The short life of the Red Queen”.
+#  Simulation code for “The short life of the Red Queen”
 
 This repository contains code, numerical results and stochastic simulation results for generating all Figures in the manuscript.
 
-*Easy start:* Have a look at the Jupyter notebook Trajectory_Fig1.ipynb which explains and lets you try out the simulations.
+**Easy start:** Have a look at the Jupyter notebook Trajectory_Fig1.ipynb which explains and lets you try out the simulations.
 
 * The “main” scripts perform the stochastic simulations for two or more types: “twoTypes” can also generate Fig1, “manyTypes” generates Fig4 and Fig5
 
